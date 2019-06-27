@@ -1,0 +1,38 @@
+<div>
+  <form (ngSubmit)="add()" #addData=ngForm>
+  <div>
+    <input [(ngModel)]="Obj.custName" name="name" #name=ngModel type="text" placeholder="Enter your Name " required>
+  </div>
+  <div>
+    <select [(ngModel)]="Obj.ordered" name="ordered" required>
+        <option value="" disabled selected>Choose your Food</option>
+        <option value="Pizza">Pizza</option>
+        <option value="Burgar">Burgar</option>
+        <option value="Sandwitch">Sandwitch</option>
+        <option value="Milkshake">Milkshake</option>
+      </select>
+    </div>
+    <div>
+      <input type="tel" [(ngModel)]="Obj.mobile" name="mobile" #mobile=ngModel placeholder="Enter your Mobile No. " required>
+    </div>
+    <button  *ngIf="!isEdited"  type="submit" [disabled]="addData.invalid">Submit</button><button  *ngIf="!isEdited" type="submit" [disabled]="addData.invalid" type="reset">Reset</button>
+    <button *ngIf="isEdited"  (click)="update()" type="submit" [disabled]="addData.invalid">Update</button>
+  </form>
+</div>
+
+<table border="1" align="center">
+  <caption>Food Order Data</caption>
+  <tr>
+    <th>Order Id</th><th>Customer Name</th><th>Food Ordered</th><th>Price</th><th>Mobile</th><th>Edit</th><th>Delete</th>
+  </tr>
+  <tr *ngFor="let i of pizzaArr;let ind=index">
+    <td>{{i.orderId}}</td>
+    <td>{{i.custName}}</td>
+    <td>{{i.ordered}}</td>
+    <td>{{i.price}}</td>
+    <td>{{i.mobile}}</td> 
+    <td><button (click)="edit(i.orderId)">Edit</button></td>
+    <td><button (click)="delete(ind)">Delete</button></td>    </tr>
+</table>
+{{addData.valid | json}}
+{{addData.value}}

@@ -1,0 +1,19 @@
+<div>
+  <input [(ngModel)]="id" placeholder="Enter Oreder Id" type="number"><br>
+  <button (click)="search(id)">Search</button>
+</div>
+<div *ngIf="searchObj!=null">
+    <table border="1" align="center">
+        <tr>
+          <th>Order Id</th><th>Customer Name</th><th>Food Ordered</th><th>Price</th><th>Mobile</th>
+        </tr>
+        <tr>
+          <td>{{searchObj.orderId}}</td>
+          <td>{{searchObj.custName}}</td>
+          <td>{{searchObj.ordered}}</td>
+          <td>{{searchObj.price}}</td>
+          <td>{{searchObj.mobile}}</td> 
+         </tr>
+      </table>
+</div>
+<div *ngIf="searchObj==null"><h4>Order Not Found</h4></div>
