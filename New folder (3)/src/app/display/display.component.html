@@ -1,0 +1,19 @@
+<div>
+  <button (click)="sort()">Sort By OrderId</button>
+  <table border="1" align="center">
+    <caption>Food Order Data</caption>
+    <tr>
+      <th>Order Id</th><th>Customer Name</th><th>Food Ordered</th><th>Price</th><th>Mobile</th><th>Edit</th><th>Delete</th>
+    </tr>
+    <tr *ngFor="let i of pizzaArr;let ind=index">
+      <td>{{i.orderId}}</td>
+      <td>{{i.custName}}</td>
+      <td>{{i.ordered}}</td>
+      <td>{{i.price}}</td>
+      <td>{{i.mobile}}</td> 
+      <td><button (click)="edit(i.orderId)">Edit</button></td>
+      <td><button (click)="delete(ind)">Delete</button></td>    </tr>
+  </table>
+</div>
+<app-register *ngIf="isEdited" [isEdited]="isEdited" [Obj]="Obj" (edited)="isEdited=false"></app-register>
+<!-- isEdited:of display.ts and []/():are from registration.ts -->
